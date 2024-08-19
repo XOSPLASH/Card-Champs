@@ -1,0 +1,144 @@
+:root {
+    --card-width: 60px;
+    --card-height: 84px;
+    --champion-scale: 2;
+    --tower-scale: 1.33;
+    --border-radius: 5px;
+    --deck-padding: 10px;
+    --spacing: 10px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.enemy-section, .player-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.deck-tower {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.deck {
+    display: flex;
+    justify-content: center;
+    background-color: #e0e0e0;
+    border-radius: var(--border-radius);
+    padding: var(--deck-padding);
+}
+
+.tower {
+    position: absolute;
+}
+
+.enemy .tower {
+    right: var(--spacing);
+}
+
+.player .tower {
+    left: var(--spacing);
+}
+
+.champion {
+    margin: var(--spacing) 0;
+}
+
+.card {
+    width: var(--card-width);
+    height: var(--card-height);
+    margin: 0 calc(var(--spacing) / 2);
+    border: 2px solid black;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.champion-card {
+    width: calc(var(--card-width) * var(--champion-scale));
+    height: calc(var(--card-height) * var(--champion-scale));
+    border: 3px solid gold;
+    position: relative;
+}
+
+.tower-card {
+    width: calc(var(--card-width) * var(--tower-scale));
+    height: calc(var(--card-height) * var(--tower-scale));
+}
+
+.card img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.health {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.enemy .tower-card {
+    border-color: red;
+}
+
+.player .tower-card {
+    border-color: blue;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    :root {
+        --card-width: 50px;
+        --card-height: 70px;
+    }
+
+    .game-container {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 400px) {
+    :root {
+        --card-width: 40px;
+        --card-height: 56px;
+        --champion-scale: 1.8;
+        --tower-scale: 1.2;
+    }
+
+    .deck {
+        padding: 5px;
+    }
+}
