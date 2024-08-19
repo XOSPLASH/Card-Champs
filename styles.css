@@ -1,21 +1,28 @@
 :root {
-    --card-width: 60px;
-    --card-height: 84px;
-    --champion-scale: 2;
+    /* Card Styles */
+    --card-width: 8vmin;
+    --card-height: calc(var(--card-width) * 1.4);
+    --border-radius: 0.5vmin;
+
+    /* Tower Styles */
     --tower-scale: 1.33;
-    --border-radius: 5px;
-    --deck-padding: 10px;
-    --spacing: 10px;
+    --tower-offset: 1vmin;
+    
+    /* Champion Styles */
+    --champion-scale: 2;
+
+    /* Deck Styles */
+    --deck-padding: 1vmin;
+    --deck-gap: 2vmin;
+
+    --spacing: 1vmin;
 }
 
-body {
+body, html {
     margin: 0;
     padding: 0;
+    height: 100%;
     font-family: 'Quicksand', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
     background-color: #f0f0f0;
 }
 
@@ -23,17 +30,19 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
-    max-width: 800px;
-    height: 100vh;
-    padding: 20px;
+    height: 100%;
+    padding: 2vmin;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .enemy-section, .player-section {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
 .deck-tower {
@@ -42,6 +51,8 @@ body {
     align-items: center;
     width: 100%;
     position: relative;
+    padding: 0 calc(var(--card-width) * var(--tower-scale) + var(--tower-offset));
+    box-sizing: border-box;
 }
 
 .deck {
@@ -50,18 +61,21 @@ body {
     background-color: #e0e0e0;
     border-radius: var(--border-radius);
     padding: var(--deck-padding);
+    max-width: 100%;
 }
 
 .tower {
     position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .enemy .tower {
-    right: var(--spacing);
+    right: var(--tower-offset);
 }
 
 .player .tower {
-    left: var(--spacing);
+    left: var(--tower-offset);
 }
 
 .champion {
@@ -72,20 +86,22 @@ body {
     width: var(--card-width);
     height: var(--card-height);
     margin: 0 calc(var(--spacing) / 2);
-    border: 2px solid black;
+    border: 0.2vmin solid black;
     border-radius: var(--border-radius);
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: white;
+    font-size: 3vmin;
 }
 
 .champion-card {
     width: calc(var(--card-width) * var(--champion-scale));
     height: calc(var(--card-height) * var(--champion-scale));
-    border: 3px solid gold;
+    border: 0.3vmin solid gold;
     position: relative;
+    font-size: 2vmin;
 }
 
 .tower-card {
@@ -101,13 +117,13 @@ body {
 
 .health {
     position: absolute;
-    bottom: 5px;
+    bottom: 0.5vmin;
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(255, 255, 255, 0.7);
-    padding: 2px 5px;
-    border-radius: 3px;
-    font-size: 14px;
+    padding: 0.2vmin 0.5vmin;
+    border-radius: 0.3vmin;
+    font-size: 1.5vmin;
 }
 
 .enemy .tower-card {
@@ -118,27 +134,11 @@ body {
     border-color: blue;
 }
 
-/* Responsive adjustments */
-@media (max-width: 600px) {
-    :root {
-        --card-width: 50px;
-        --card-height: 70px;
-    }
-
-    .game-container {
-        padding: 10px;
-    }
+/* Ensure gap between decks */
+.enemy-section {
+    margin-bottom: calc(var(--deck-gap) / 2);
 }
 
-@media (max-width: 400px) {
-    :root {
-        --card-width: 40px;
-        --card-height: 56px;
-        --champion-scale: 1.8;
-        --tower-scale: 1.2;
-    }
-
-    .deck {
-        padding: 5px;
-    }
+.player-section {
+    margin-top: calc(var(--deck-gap) / 2);
 }
